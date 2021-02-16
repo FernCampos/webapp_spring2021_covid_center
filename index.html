@@ -3,31 +3,32 @@
 
 <head>
     <title>Covid Center Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <h1>Welcome to Covid Assessment Website!</h1>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </header>
     <section>
         <h2>Please fill out this form</h2>
         <article>
-            <form>
+            <form onsubmit="return validateForm()" id="mainForm" novalidate>
 
                 <fieldset class="border">
                     <legend class="w-auto">Part 1: Patient Information</legend>
-                        <div class="row form-group">
-                            <label for="txtFirstName" class="col-sm-2 col-form-label">First Name: </label>
-                            <div class="col-md-10 col-lg-4">
-                                <input type="text" id="txtFirstName" name="txtFirstName" class="form-control">
-                            </div>
-                            <label for="txtLastName" class="col-sm-2 col-form-label"> Last Name: </label>
-                            <div class="col-md-10 col-lg-4">
-                                <input type="text" id="txtLastName" name="txtLastName" class="form-control">
-                            </div>
+                    <div class="row form-group">
+                        <label for="txtFirstName" class="col-sm-2 col-form-label">First Name: </label>
+                        <div class="col-md-10 col-lg-4">
+                            <input type="text" id="txtFirstName" name="txtFirstName" class="form-control">
                         </div>
+                        <label for="txtLastName" class="col-sm-2 col-form-label"> Last Name: </label>
+                        <div class="col-md-10 col-lg-4">
+                            <input type="text" id="txtLastName" name="txtLastName" class="form-control">
+                        </div>
+                    </div>
                     <fieldset class="border form-group">
 
                         <div class="row">
@@ -99,6 +100,7 @@
                         <div class="col-sm-10">
                             <input type="date" id="txtDob" name="txtDob" required class="form-control">
                         </div>
+                        <div id="divDoBError" class="col-sm-5 invisible errorMessage"></div>
                     </div>
                 </fieldset>
 
@@ -265,18 +267,19 @@
                             <br>
                         </label>
                         <div>
-                            <select id="ddCountry" name="ddCountry" class="form-control">
+                            <select id="ddCountry" name="ddCountry" class="form-control" onchange="updateCountryView()">
                                 <option value="No" selected>No</option>
                                 <option value="Yes">Yes</option>
                             </select>
                         </div>
                         <br>
                     </div>
-                    <div class="row form-group">
+                    <div id="divCountry" class="row form-group invisible">
                         <label for="txtCountry" class="col-sm-2 col-form-label">
                             If Yes, which countries? Please separate each with a comma.
                         </label>
                         <input type="text" id="txtCountry" name="txtCountry" required class="form-control">
+                        <div id="divCountryError" class="col-sm-5 invisible errorMessage"></div>
                     </div>
                     <div class="row form-group">
                         <label for="ddSocial" class="col-sm-2 col-form-label">
@@ -307,6 +310,7 @@
     <footer>
         Copyright Information 2021 Covid Center Website...etc
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
